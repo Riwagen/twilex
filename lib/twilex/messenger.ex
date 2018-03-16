@@ -16,7 +16,7 @@ defmodule Twilex.Messenger do
   """
 
   @spec send_sms(String.t(), String.t(), String.t(), String.t()) :: map()
-  def send_sms(from, to, body, media \\ "") do
+  def send_sms(from, to, body, media \\ nil) do
     request_url()
     |> HTTPoison.post!(sms(from, to, body, media), headers())
     |> process_response_body()
