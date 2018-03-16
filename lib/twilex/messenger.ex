@@ -31,7 +31,7 @@ defmodule Twilex.Messenger do
   end
 
   defp sms(from, to, body, media) do
-    {:form, [To: to, From: from, Body: body, MediaUrl: media]}
+    {:form, Enum.into(Enum.filter([To: to, From: from, Body: body, MediaUrl: media], fn {key, value} -> !is_nil(value) end), [])}
   end
 
   def request_url do
